@@ -42,18 +42,14 @@ class Dial
     end
 
     # Adds extra crossings for movements larger than -100
-    @crossings_over_zero += @position.abs / 100
+    @crossings_over_zero += @position / -100
 
-    while @position < 0 do
-      @position = @position + 100
-    end
+    @position = @position % 100
   end
 
   def adjust_right_positions_and_count_crossing
     @crossings_over_zero += @position.abs / 100
-    while @position >= 100 do
-      @position = @position - 100
-    end
+    @position = @position % 100
   end
 end
 

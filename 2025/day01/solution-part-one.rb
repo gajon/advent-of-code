@@ -16,17 +16,15 @@ class Dial
   def left(n)
     @position = @position - n
 
-    while @position < 0 do; @position = @position + 100; end
-
-    @position
+    # while @position < 0 do; @position = @position + 100; end
+    #
+    # I had my initial solution use the while above, but then remembered modulo
+    @position = @position % 100
   end
 
   def right(n)
     @position = @position + n
-
-    while @position >= 100 do; @position = @position - 100; end
-
-    @position
+    @position = @position % 100
   end
 end
 
