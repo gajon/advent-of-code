@@ -16,7 +16,7 @@ class Grid
     (0...max_y).each do |y|
       (0...max_x).each do |x|
         cell = cell_content(x:, y:)
-        accessible_rolls_count += 1 if cell == "@" and accessible?(x:, y:)
+        accessible_rolls_count += 1 if cell == "@" && accessible?(x:, y:)
 
         # print_cell(cell, x:, y:) # for debugging
       end
@@ -86,6 +86,6 @@ File.open("input", "r") do |file|
   rows = file.readlines.map(&:chomp)
   puts "Rows: #{rows.size}"
 
-  grid = Grid.new(rows.map { |row| row.split(//) })
+  grid = Grid.new(rows.map(&:chars))
   puts "\nResult: #{grid.accessible_rolls}"
 end

@@ -1,0 +1,23 @@
+AllCops:
+  NewCops: enable
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 20
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/SelfAssignment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false

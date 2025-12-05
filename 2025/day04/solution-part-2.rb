@@ -19,7 +19,7 @@ class Grid
     count = accessible_rolls
     total = count
 
-    while count > 0 do
+    while count.positive?
       system "clear" if @debug # for a cheap way to 'visualize' the grid changing
       puts "\nRemoved rolls: #{count}" if @debug
 
@@ -108,6 +108,7 @@ class Grid
 
   def print_cell(cell, x:, y:)
     return unless @debug
+
     print "\n" if x.zero?
 
     if cell == "@" && accessible?(x:, y:)
@@ -122,6 +123,6 @@ File.open("input", "r") do |file|
   rows = file.readlines.map(&:chomp)
   puts "Rows: #{rows.size}"
 
-  grid = Grid.new(rows.map { |row| row.split(//) }, debug: false)
+  grid = Grid.new(rows.map(&:chars), debug: false)
   puts "\nResult: #{grid.accessible_rolls_by_stages}"
 end
