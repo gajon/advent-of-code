@@ -10,6 +10,9 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Max: 20
 
+Metrics/PerceivedComplexity:
+  Max: 10
+
 Naming/MethodParameterName:
   Enabled: false
 
