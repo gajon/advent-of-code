@@ -29,6 +29,19 @@ RotationInstruction parse_instruction(char* instruction) {
     return rotation_instruction;
 }
 
+i32 calculate_new_position(const i32 dial_position,
+                           const RotationInstruction instruction) {
+    i32 new_dial_position = dial_position;
+
+    if (instruction.direction == 'L') {
+        new_dial_position -= instruction.steps;
+    } else {
+        new_dial_position += instruction.steps;
+    }
+
+    return ((new_dial_position % 100) + 100) % 100;
+}
+
 int main(void) {
     FILE *file = open_file("input");
     i32 dial_position = 50;
@@ -40,18 +53,11 @@ int main(void) {
 
     while (fgets(instruction, sizeof(instruction), file) != NULL) {
         RotationInstruction inst = parse_instruction(instruction);
+        dial_position = calculate_new_position(dial_position, inst);
 
-        i32 new_dial_position = dial_position;
-
-        if (inst.direction == 'L') {
-            new_dial_position -= inst.steps;
-        } else {
-            new_dial_position += inst.steps;
+        if (dial_position == 0) {
+            at_zero_times += 1;
         }
-
-        dial_position = ((new_dial_position % 100) + 100) % 100;
-
-        if (dial_position == 0) at_zero_times += 1;
 
         printf("The dial is rotated %c%u to point at %d\n",
                inst.direction, inst.steps, dial_position);
